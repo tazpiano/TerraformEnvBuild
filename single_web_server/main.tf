@@ -19,14 +19,15 @@ provider "aws" {
 resource "aws_instance" "example" {
   # CentOS Linux 7 x86_64 HVM EBS ENA, SSD Volume Type in us-east-1
   ami = "ami-9887c6e7"
+  # set to free tier instance type
   instance_type = "t2.micro"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p "${var.server_port}" &
-              EOF
+  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
+  # user_data = <<-EOF
+  #             #!/bin/bash
+  #             echo "Hello, World" > index.html
+  #             nohup busybox httpd -f -p "${var.server_port}" &
+  #             EOF
 
   tags {
     Name = "terraform-example"
