@@ -1,3 +1,9 @@
+# Specify all variables
+variable "aws_profile" {}
+variable "aws_region" {}
+variable "admin_cidr" {}
+variable "ssh_key_name" {}
+
 # Specify the provider and access details
 provider "aws" {
   profile = "${var.aws_profile}"
